@@ -1,14 +1,102 @@
 /*---------------------------------------/*
  # SETTINGS
 /*---------------------------------------*/
-
+/* Colors and Theme */
 :root {
-  /* CSS variables here */
+  /* Mode 1 */
+  /* color */
+  --blue-10: hsl(216 100% 97%);
+  --blue-100: hsl(216 100% 10%);
+  --blue-20: hsl(216 100% 90%);
+  --blue-30: hsl(216 100% 80%);
+  --blue-40: hsl(216 100% 70%);
+  --blue-50: hsl(216 100% 60%);
+  --blue-50-alpha-30: hsl(216 100% 60% / 0.3);
+  --blue-50-alpha-50: hsl(216 100% 60% / 0.5);
+  --blue-60: hsl(216 100% 50%);
+  --blue-70: hsl(216 100% 40%);
+  --blue-80: hsl(216 100% 30%);
+  --blue-90: hsl(216 100% 20%);
+  --gray-10: hsl(216 24% 96%);
+  --gray-100: hsl(213 13% 13%);
+  --gray-20: hsl(216 11% 90%);
+  --gray-30: hsl(215 5% 77%);
+  --gray-40: hsl(215 4% 68%);
+  --gray-50: hsl(214 3% 59%);
+  --gray-60: hsl(214 3% 50%);
+  --gray-70: hsl(214 4% 41%);
+  --gray-80: hsl(214 5% 32%);
+  --gray-90: hsl(214 8% 22%);
+  --red-50: hsl(350 88% 57%);
+  --red-50-a-30: hsl(350 88% 57% / 0.3);
+  --red-50-a-50: hsl(350 88% 57% / 0.5);
+
+  /* Light */
+  /* color */
+  --background-brand: var(--blue-50);
+  --background-layer-1: var(--gray-10);
+  --background-layer-2: hsl(0 0 100%);
+  --background-layer-3: hsl(0 0 100%);
+  --border-color-brand: var(--blue-50);
+  --border-color-error: var(--red-50);
+  --border-color-hard: var(--gray-30);
+  --border-color-normal: var(--gray-20);
+  --border-color-soft: var(--gray-10);
+  --color-brand: var(--blue-50);
+  --color-error: var(--red-50);
+  --color-light: var(--gray-50);
+  --color-normal: var(--gray-100);
+  --color-soft: var(--gray-70);
+  --logo-circle-1: var(--gray-100);
+  --logo-circle-2: var(--background-brand);
+  --logo-text: var(--gray-100);
+  --outline-color-default: var(--blue-50-alpha-30);
+  --outline-color-error: var(--red-50-a-30);
+
+  /* Mode 1 */
+  /* number */
+  --radius-s: 0.1875rem;
+  --radius: 0.375rem;
+  --radius-l: 0.75rem;
+
+  /* Mode 1 */
+  /* number */
+  --space-1: 0.125rem;
+  --space-2: 0.25rem;
+  --baseline: 0.5rem;
+  --space-3: var(--baseline);
+  --space-4: 0.75rem;
+  --space-5: 1rem;
+  --space-6: 1.5rem;
+  --space-7: 2rem;
+  --space-8: 2.5rem;
+  --space-9: 3rem;
+  --space-10: 4rem;
+
+  /* value */
+  /* number */
+  --type-scale-1: 0.75rem;
+  --type-scale-2: 0.875rem;
+  --type-scale-3: 1rem;
+  --type-scale-4: 1.125rem;
+  --type-scale-5: 1.25rem;
+  --type-scale-6: 1.5rem;
+  --type-scale-7: 1.75rem;
+  --type-scale-8: 2rem;
+  --type-scale-9: 2.25rem;
+  --type-scale-10: 2.625rem;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background-layer-1: var(--gray-100);
+    --color-normal: var(--gray-10);
+  }
 }
 
 /*---------------------------------------/*
  # GENERIC
 /*---------------------------------------*/
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 
 *,
 *:before,
@@ -38,20 +126,30 @@ img {
 html {
   font-size: 100%;
   line-height: 1.5;
-  font-family: "Helvetica Neue", Helvetica, arial, sans-serif;
-  color: #171b1c;
   scroll-behavior: smooth;
   /* anti aliasing */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color: var(--color-normal);
+  background-color: var(--background-layer-1);
 }
 
+@media (prefers-color-scheme: dark) {
+  html {
+    background-color: black;
+  }
+}
 /*
     Customize the background color and color to match your design.
 */
+body {
+  color: var(--color-normal);
+  background-color: var(--background-layer-1);
+  font-family: "Inter", sans-serif;
+}
 
 ::selection {
-  background: #00b2ff;
+  background: var(--color-brand);
   color: white;
 }
 
@@ -112,20 +210,20 @@ li ol {
 }
 
 a {
-  color: #008fcc;
+  color: var(--color-brand);
   transition: all 0.1s ease-in-out;
 }
 
 a:visited {
-  color: #008fcc;
+  color: var(--color-brand);
 }
 
 a:hover {
-  color: #00b2ff;
+  color: var(--color-brand);
 }
 
 a:active {
-  color: #006b99;
+  color: var(--color-brand);
 }
 
 /*---------------------------------------/*
@@ -142,6 +240,35 @@ a:active {
 }
 
 /*
+ Object: Button reset
+ ---
+ Small button reset object
+*/
+
+.o-button-reset {
+  border: none;
+  margin: 0;
+  padding: 0;
+  width: auto;
+  overflow: visible;
+  background: transparent;
+
+  /* inherit font & color from ancestor */
+  color: inherit;
+  font: inherit;
+
+  /* Normalize `line-height`. Cannot be changed from `normal` in Firefox 4+. */
+  line-height: normal;
+
+  /* Corrects font smoothing for webkit */
+  -webkit-font-smoothing: inherit;
+  -moz-osx-font-smoothing: inherit;
+
+  /* Corrects inability to style clickable `input` types in iOS */
+  -webkit-appearance: none;
+}
+
+/*
     Objects: Container
     ---
     Creates a horizontal container that sets de global max-width
@@ -151,10 +278,11 @@ a:active {
   margin-left: auto;
   margin-right: auto;
   width: 100%;
-  max-width: 87.5rem;
+  max-width: 30rem;
+  
 }
 
-/*------------------------------------*\
+/*------------------------------------*\ 
   #COMPONENTS
 \*------------------------------------*/
 /*
@@ -162,6 +290,204 @@ a:active {
     ---
     Component description
 */
+.c-card {
+  background-color: var(--background-white, #fff);
+  border-radius: var(--radius-m, 8px);
+  border: 1px solid var(--border-color, #ddd);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  padding: var(--space-9, 48px);
+}
+
+.c-card__title {
+  text-align: center;
+  font-size: var(--type-scale-4, 1.125rem);
+  font-weight: var(--font-weight-bold, 700);
+  line-height: var(--line-height-normal, 1.5);
+  margin-bottom: var(--space-4, 16px);
+}
+
+.c-card__body {
+  padding: var(--space-6, 24px);
+}
+
+/* logo nog centreren via flexbox */
+.c-logo {
+  height: 1.5rem;
+  align-items: center;
+}
+
+.c-logo__symbol {
+  height: 100%;
+  display: block;
+  margin: auto;
+}
+
+.c-logo__path--text {
+  fill: var(--logo__path--text-fill, var(--color-gray-100));
+}
+
+.c-logo__path--circle-1 {
+  fill: var(--logo__path--circle-1-fill, var(--color-brand));
+}
+
+.c-logo__path--circle-2 {
+  fill: var(--logo__path--circle-2-fill, var(--color-gray-100));
+}
+
+@media (prefers-color-scheme: dark) {
+  .c-logo {
+    --logo__path--text-fill: White;
+    --logo__path--circle-1-fill: var(--logo__path--text-fill);
+    --logo__path--circle-2-fill: var(--logo__path--text-fill);
+  }
+}
+
+.c-form-label {
+  display: block;
+}
+
+.c-form-input {
+  display: block;
+}
+
+.c-input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 100%;
+  border: 1px solid var(--border-color-normal, #e2e5e8);
+  outline: none;
+}
+
+.c-input:focus {
+  outline: 2px solid var(--outline-color-default, #3385ff);
+  box-shadow: h-offset v-offset blur spread color;
+}
+
+.c-form-field {
+  width: 100%;
+}
+
+.c-form-field .c-input {
+  font-size: var(--type-scale-3, 16px);
+  line-height: var(--space-6, 24px);
+  padding: var(--space-3, 8px) var(--space-4, 12px);
+  border: 1px solid var(--border-color-normal, #e2e5e8);
+}
+
+.c-sign-in {
+  display: flex;
+  height: var(--space-9, 48px);
+  padding: var(--space-4, 12px) 0px;
+  justify-content: space-around;
+  align-items: center;
+  align-self: stretch;
+  border-radius: var(--radius-s, 3px);
+  background: var(--background-brand, #3385ff);
+  color: white;
+  font-size: var(--type-scale-3, 16px);
+  font-style: normal;
+  font-weight: 600;
+  line-height: var(--space-6, 24px); /* 150% */
+  text-align: right;
+}
+
+.c-forgot-password {
+  align-self: stretch;
+  text-align: center;
+  font-size: var(--type-scale-2, 14px);
+  font-style: normal;
+  font-weight: 400;
+  line-height: var(--space-5, 16px);
+  text-decoration-line: underline;
+}
+
+.c-forgot-password__link {
+  color: var(--color-light, #929599);
+}
+
+.c-card__footer {
+  padding: var(--space-6, 24px);
+  border-top: 1px solid var(--border-color, #ddd);
+  text-align: center;
+}
+
+.c-card__footer__text {
+  color: var(--color-light, #929599);
+  text-align: center;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px; /* 114.286% */
+}
+
+.c-card__footer__text--underline {
+  text-decoration-line: underline;
+}
+
+@media (min-width: 768px) {
+  .c-card__body,
+  .c-card__footer {
+    padding: var(--space-8, 32px);
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .c-card {
+    background-color: var(--background-dark, #333);
+    border: 1px solid var(--border-color-dark, #444);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  }
+
+  .c-card__title {
+    color: var(--text-color-dark, #fff);
+  }
+
+  .c-card__body {
+    color: var(--text-color-dark, #fff);
+  }
+
+  .c-logo__path--text {
+    fill: var(--logo__path--text-fill-dark, #fff);
+  }
+
+  .c-logo__path--circle-1 {
+    fill: var(--logo__path--circle-1-fill-dark, #fff);
+  }
+
+  .c-logo__path--circle-2 {
+    fill: var(--logo__path--circle-2-fill-dark, #fff);
+  }
+
+  .c-input {
+    border: 1px solid var(--border-color-dark, #444);
+    background-color: var(--background-input-dark, #555);
+    color: var(--text-color-dark, #fff);
+    border-radius: var(--radius-s, 3px);
+
+  }
+
+  .c-input:focus {
+    outline: 2px solid var(--outline-color-dark, #3385ff);
+  }
+
+  .c-sign-in {
+    background: var(--background-brand-dark, #2868cc);
+  }
+
+  .c-forgot-password__link {
+    color: var(--color-light-dark, #bbb);
+  }
+
+  .c-card__footer {
+    border-top: 1px solid var(--border-color-dark, #444);
+  }
+
+  .c-card__footer__text {
+    color: var(--color-light-dark, #bbb);
+  }
+}
 
 /*---------------------------------------/*
  # UTILITIES
@@ -182,4 +508,9 @@ a:active {
 
 .u-max-width-l {
   max-width: 87.5rem;
+}
+
+.error {
+  --c-label-color: var(--color-red);
+  --c-input-border-color: var(--color-red);
 }
